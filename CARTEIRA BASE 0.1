@@ -1,0 +1,52 @@
+
+#include <stdio.h>
+
+typedef struct {
+    char nome[50];
+    int tipo;
+    float saldo;
+} t_carteira;
+
+int main() {
+
+    t_carteira clientes[2];
+    int i;
+    float emprestimo;
+
+    // Cadastro dos clientes
+    for (i = 0; i < 2; i++) {
+
+        printf("\nDigite o nome do usuario: ");
+        scanf(" %49[^\n]", clientes[i].nome);
+
+        printf("\nDigite o tipo da conta:\n");
+        printf("01 - Poupanca\n");
+        printf("02 - Salario\n");
+        printf("03 - Corrente\n");
+        scanf("%d", &clientes[i].tipo);
+
+        printf("Digite o saldo da conta: ");
+        scanf("%f", &clientes[i].saldo);
+    }
+
+    // Verificacao dos emprestimos
+    printf("\n===== CLIENTES APTOS A EMPRESTIMO =====\n");
+
+    for (i = 0; i < 2; i++) {
+
+        if (clientes[i].tipo != 2 && clientes[i].saldo > 0) {
+
+            emprestimo = clientes[i].saldo * 0.20;
+
+            printf("\nNome: %s\n", clientes[i].nome);
+            printf("Valor do emprestimo: R$ %.2f\n", emprestimo);
+
+        } else {
+
+            printf("\nCliente %s nao esta apto ao emprestimo.\n",
+                   clientes[i].nome);
+        }
+    }
+
+    return 0;
+}
